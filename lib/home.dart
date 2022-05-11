@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
         title: Image.asset(
           "assets/images/youtube.png",
           scale: 8,
-          ),
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: (){
