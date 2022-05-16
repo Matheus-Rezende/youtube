@@ -39,29 +39,42 @@ class _HomeState extends State<Home> {
             onPressed: (){
               debugPrint("Ação streaming");
             }, 
-            icon: const Icon(Icons.connected_tv_outlined),
+            icon: const Icon(
+              Icons.connected_tv_outlined,
+              size: 20,
+            ),
           ),
           IconButton(
             onPressed: (){
               debugPrint("Ação videoCam");
             }, 
-            icon: const Icon(Icons.notifications_none_rounded),
+            icon: const Icon(
+              Icons.notifications_none_rounded,
+              size: 20,
+            ),
           ),
           IconButton(
             onPressed: (){
               debugPrint("Ação pesquisa");
             }, 
-            icon: const Icon(Icons.search_outlined),
+            icon: const Icon(
+              Icons.search_outlined,
+              size: 20,
+            ),
           ),
           IconButton(
             onPressed: (){
               debugPrint("Ação conta");
             }, 
-            icon: const Icon(Icons.account_circle),
+            icon: const Icon(
+              Icons.account_circle,
+              size: 20,
+            ),
           ),
         ],
       ),
-      body: Center(
+      body: Container(
+        padding: const EdgeInsets.all(16),
         child: pages[_pageIndex],
       ),
       bottomNavigationBar: NavigationBarTheme(
@@ -83,36 +96,44 @@ class _HomeState extends State<Home> {
             NavigationDestination(
               selectedIcon: Icon(
                 Icons.home, 
+                size: 19,
               ),
               icon: Icon(
                 Icons.home_outlined,
+                size: 19,
               ),
               label: 'Home',
             ),
             NavigationDestination(
               selectedIcon: Icon(
-                  Icons.play_arrow_rounded
+                  Icons.play_circle_filled_rounded,
+                  size: 19,
                 ),
               icon: Icon(
-                  Icons.play_arrow_outlined,
+                  Icons.play_circle_outline_rounded,
+                  size: 19,
                 ),
               label: 'Shorts',
             ),
             NavigationDestination(
               selectedIcon: Icon(
                 Icons.subscriptions,
+                size: 19,
               ),
               icon: Icon(
                 Icons.subscriptions_outlined,
+                size: 19,
               ),
               label: 'Inscrições',
             ),
             NavigationDestination(
               selectedIcon: Icon(
                 Icons.video_library_rounded,
+                size: 19,
               ),
               icon: Icon(
                 Icons.video_library_outlined, 
+                size: 19,
               ),
               label: 'Biblioteca',
             )

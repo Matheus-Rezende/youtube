@@ -10,8 +10,11 @@ class SubscriptionsPage extends StatefulWidget {
 class _SubscriptionsPageState extends State<SubscriptionsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return const Text(
+      "Inscrições",
+      style: TextStyle(
+        fontSize: 25
+      ),
     );
   }
 }
