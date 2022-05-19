@@ -4,8 +4,11 @@ import 'dart:convert';
 
 import 'model/video.dart';
 
+// ignore: constant_identifier_names
 const KEY_YOUTUBE_API = "AIzaSyCs1s1ukKyqpugO4XD484aF5DdolZwIi9U";
+// ignore: constant_identifier_names
 const ID_CHANNEL = "UCVHFbqXqoYvEWM1Ddxl0QDg";
+// ignore: constant_identifier_names
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {

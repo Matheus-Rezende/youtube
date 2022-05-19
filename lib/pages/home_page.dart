@@ -4,8 +4,13 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../model/video.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  const HomePage({ Key? key }) : super(key: key);
+
+  late String search = "";
+
+  HomePage(this.search, {Key? key}) : super(key: key);
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,17 +20,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    _listarVideos(){
+    _listarVideos(String search){
 
       Api api = Api();
-      return api.search("");;
+      debugPrint("Result: ${api.search(search)}");
+      return api.search(search);
     }
-
-    YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: '',
-    );
     return FutureBuilder<List<Video>?>(
-      future: _listarVideos(),
+      future: _listarVideos(widget.search),
       builder: (context, snapshot){
         switch(snapshot.connectionState){
           case ConnectionState.none:
@@ -40,6 +42,7 @@ class _HomePageState extends State<HomePage> {
           case ConnectionState.done:
             if(snapshot.hasData){
               return ListView.separated(
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index){
 
                   List<Video>? videos = snapshot.data;
@@ -48,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                   YoutubePlayerController _controllerVideo = YoutubePlayerController(
                     initialVideoId: video.id,
                     flags: const YoutubePlayerFlags(
-                      autoPlay: false
+                      autoPlay: false,
                     )
                   );
 
@@ -65,9 +68,21 @@ class _HomePageState extends State<HomePage> {
                       //     )
                       //   ),
                       // ),
-                      YoutubePlayer(
-                        controller: _controllerVideo
+                      YoutubePlayerBuilder(
+                        player: YoutubePlayer(
+                            controller: _controllerVideo,
+                        ),
+                        builder: (context, player){
+                          return Column(
+                              children: [
+                                  // some widgets
+                                  player,
+                                  //some other widgets
+                              ],
+                          );
+                        },
                       ),
+                    
                       ListTile(
                         title: Text(video.title),
                         subtitle: Text(video.channel),

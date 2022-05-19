@@ -30,23 +30,23 @@ class Video {
     );
   }
  
- String get getId => this.id;
+ String get getId => id;
 
  set setId(String id) => this.id = id;
 
-  get getTitle => this.title;
+  get getTitle => title;
 
  set setTitle( title) => this.title = title;
 
-  get getDescription => this.description;
+  get getDescription => description;
 
  set setDescription( description) => this.description = description;
 
-  get getImage => this.image;
+  get getImage => image;
 
  set setImage( image) => this.image = image;
 
-  get getChannel => this.channel;
+  get getChannel => channel;
 
  set setChannel( channel) => this.channel = channel;
 

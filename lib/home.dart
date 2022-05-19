@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/custom_search_delegate.dart';
 import 'package:youtube/pages/home_page.dart';
 import 'package:youtube/pages/library_page.dart';
 import 'package:youtube/pages/shorts_page.dart';
@@ -14,9 +15,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   int _pageIndex = 0;
-  
-  final pages = [
-    const HomePage(),
+  String _result = "";
+
+  late List pages = [
+    HomePage(_result),
     const ShortsPage(),
     const SubscriptionsPage(),
     const LibraryPage(),
@@ -54,11 +56,18 @@ class _HomeState extends State<Home> {
             ),
           ),
           IconButton(
-            onPressed: (){
-              debugPrint("Ação pesquisa");
+            onPressed: () async {
+             String res = await showSearch(
+                context: context, 
+                delegate: CustomSearchDelegate()
+              ) as String;
+              setState(() {
+                _result = res;
+              });
+              debugPrint("Resultado: foi digitado $res");
             }, 
             icon: const Icon(
-              Icons.search_outlined,
+              Icons.search,
               size: 20,
             ),
           ),
