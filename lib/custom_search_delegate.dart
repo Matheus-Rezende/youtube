@@ -44,12 +44,17 @@ class CustomSearchDelegate extends SearchDelegate<String> {
         "Android Navegação",
         "IOS",
         "Jogos"
-      ];
+      ].where(
+        (text) => text.toLowerCase().startsWith(query.toLowerCase())
+      ).toList();
 
       return ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index){
           return ListTile(
+            onTap: (){
+              close(context, lista[index]);
+            },
             title: Text(lista[index]),
           );
         }
