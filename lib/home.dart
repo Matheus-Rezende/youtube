@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/Colors/lib_color_schemes.g.dart';
 import 'package:youtube/custom_search_delegate.dart';
 import 'package:youtube/pages/home_page.dart';
 import 'package:youtube/pages/library_page.dart';
+import 'package:youtube/pages/profile_page.dart';
 import 'package:youtube/pages/shorts_page.dart';
 import 'package:youtube/pages/subs_page.dart';
 
@@ -13,6 +15,31 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'YouTube',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          brightness: Brightness.dark
+        )
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
 
   int _pageIndex = 0;
   String _result = "";
@@ -31,10 +58,10 @@ class _HomeState extends State<Home> {
         iconTheme: const IconThemeData(
           color: Colors.grey
         ),
-        backgroundColor: Colors.white,
+        
         title: Image.asset(
           "assets/images/youtube.png",
-          scale: 8,
+          scale: 12,
         ),
         actions: <Widget>[
           IconButton(
@@ -74,6 +101,7 @@ class _HomeState extends State<Home> {
           IconButton(
             onPressed: (){
               debugPrint("Ação conta");
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
             }, 
             icon: const Icon(
               Icons.account_circle,
@@ -87,11 +115,11 @@ class _HomeState extends State<Home> {
         child: pages[_pageIndex],
       ),
       bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          indicatorColor: const Color.fromARGB(255, 255, 0, 0).withOpacity(0.7)
+        data: const NavigationBarThemeData(
+          indicatorColor: Colors.red
         ),
         child: NavigationBar(
-          backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          
           animationDuration: const Duration(seconds: 1),
           height: 60,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,

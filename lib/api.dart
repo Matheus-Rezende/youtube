@@ -20,7 +20,6 @@ class Api {
                                   "&maxResults=20"
                                   "&order=date"
                                   "&key=$KEY_YOUTUBE_API"
-                                  "&channelId=$ID_CHANNEL"
                                   "&q=$nameSearch"
     );
     http.Response response = await http.get(url);
