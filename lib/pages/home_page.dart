@@ -17,15 +17,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  _listarVideos(String search){
+
+    Api api = Api();
+    return api.search(search);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("chamada 1 - initState");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    debugPrint("chamada 2 - didChangeDependencies");
+
+  }
+
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint("chamada 2 - didUpdateWidget");
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    debugPrint("chamada 4 - dispose");
+  }
   @override
   Widget build(BuildContext context) {
-
-    _listarVideos(String search){
-
-      Api api = Api();
-      debugPrint("Result: ${api.search(search)}");
-      return api.search(search);
-    }
+    debugPrint("chamada 3 - build");
     return FutureBuilder<List<Video>?>(
       future: _listarVideos(widget.search),
       builder: (context, snapshot){
@@ -51,26 +75,33 @@ class _HomePageState extends State<HomePage> {
                   YoutubePlayerController _controllerVideo = YoutubePlayerController(
                     initialVideoId: video.id,
                     flags: const YoutubePlayerFlags(
+                      controlsVisibleAtStart: true,
+                      showLiveFullscreenButton: false,
+                      forceHD: true,
                       autoPlay: false,
                     )
                   );
 
                   return Column(
                     children: <Widget>[
-                      // Container(
-                      //   height: 200,
-                      //   decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //       fit: BoxFit.cover,
-                      //       image: NetworkImage(
-                      //         video.image
-                      //       )
-                      //     )
-                      //   ),
-                      // ),
                       YoutubePlayerBuilder(
                         player: YoutubePlayer(
                             controller: _controllerVideo,
+                            progressIndicatorColor: Colors.red,
+                            showVideoProgressIndicator: true,
+                            aspectRatio: 19.5 / 9,
+                            actionsPadding: const EdgeInsets.all(20),
+                            thumbnail: Container(
+                              height: 200,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    video.image
+                                  )
+                                )
+                              ),
+                            ),
                         ),
                         builder: (context, player){
                           return Column(
@@ -82,11 +113,10 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                       ),
-                    
                       ListTile(
                         title: Text(video.title),
                         subtitle: Text(video.channel),
-                      )
+                      ),
                     ],
                   );
                 }, 

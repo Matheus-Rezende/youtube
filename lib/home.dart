@@ -3,6 +3,7 @@ import 'package:youtube/Colors/lib_color_schemes.g.dart';
 import 'package:youtube/custom_search_delegate.dart';
 import 'package:youtube/pages/home_page.dart';
 import 'package:youtube/pages/library_page.dart';
+import 'package:youtube/pages/notifications_page.dart';
 import 'package:youtube/pages/profile_page.dart';
 import 'package:youtube/pages/shorts_page.dart';
 import 'package:youtube/pages/subs_page.dart';
@@ -22,10 +23,11 @@ class _HomeState extends State<Home> {
       title: 'YouTube',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.red,
-          brightness: Brightness.dark
-        )
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: Colors.red,
+        //   brightness: Brightness.dark
+        // )
+        colorScheme: darkColorScheme
       ),
       home: const MyHomePage(),
     );
@@ -75,7 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           IconButton(
             onPressed: (){
-              debugPrint("Ação videoCam");
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsPage()));
+              debugPrint("Ação notificação");
             }, 
             icon: const Icon(
               Icons.notifications_none_rounded,
@@ -91,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
               setState(() {
                 _result = res;
               });
-              debugPrint("Resultado: foi digitado $res");
             }, 
             icon: const Icon(
               Icons.search,
