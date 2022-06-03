@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube/Colors/lib_color_schemes.g.dart';
+import 'package:youtube/Components/Commom/menu_expanded.widget.dart';
 import 'package:youtube/custom_search_delegate.dart';
 import 'package:youtube/pages/home_page.dart';
 import 'package:youtube/pages/library_page.dart';
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late List pages = [
     HomePage(_result),
     const ShortsPage(),
+    const MenuExpandedWidget(),
     const SubscriptionsPage(),
     const LibraryPage(),
   ];
@@ -124,15 +126,15 @@ class _MyHomePageState extends State<MyHomePage> {
           
           animationDuration: const Duration(seconds: 1),
           height: 60,
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
           selectedIndex: _pageIndex,
           onDestinationSelected: (int newIndex){
             setState(() {
               _pageIndex = newIndex;
             });
           },
-          destinations: const [
-            NavigationDestination(
+          destinations: [
+            const NavigationDestination(
               selectedIcon: Icon(
                 Icons.home, 
                 size: 19,
@@ -143,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               label: 'Home',
             ),
-            NavigationDestination(
+            const NavigationDestination(
               selectedIcon: Icon(
                   Icons.play_circle_filled_rounded,
                   size: 19,
@@ -154,7 +156,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               label: 'Shorts',
             ),
-            NavigationDestination(
+            FloatingActionButton(
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 25,
+              ),
+              mini: true,
+              backgroundColor: darkColorScheme.onSecondary,
+              onPressed: (){
+                showModalBottomSheet(
+                  context: context,
+                  builder:(context) {
+                    return const MenuExpandedWidget();
+                  }
+                );
+              }
+            ),
+            const NavigationDestination(
               selectedIcon: Icon(
                 Icons.subscriptions,
                 size: 19,
@@ -165,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               label: 'Inscrições',
             ),
-            NavigationDestination(
+            const NavigationDestination(
               selectedIcon: Icon(
                 Icons.video_library_rounded,
                 size: 19,
