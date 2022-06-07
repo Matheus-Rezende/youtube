@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late List pages = [
     HomePage(_result),
     const ShortsPage(),
-    const MenuExpandedWidget(),
+    const MenuExpandedWidget(title: '', submenu1: '', submenu2: '', submenu3: '', icon1: Icon(Icons.add), icon2: Icon(Icons.add), icon3: Icon(Icons.add),),
     const SubscriptionsPage(),
     const LibraryPage(),
   ];
@@ -71,6 +71,20 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: (){
               debugPrint("Ação streaming");
+              showModalBottomSheet(
+                context: context,
+                builder:(context) {
+                  return const MenuExpandedWidget(
+                    title: "Conectar a um dispositivo",
+                    submenu1: "Vincular com código da TV",
+                    submenu2: "Saiba mais",
+                    submenu3: "Status da conexão",
+                    icon1: Icon(Icons.tv),
+                    icon2: Icon(Icons.info),
+                    icon3: Icon(Icons.connected_tv)
+                  );
+                }
+              );
             }, 
             icon: const Icon(
               Icons.connected_tv_outlined,
@@ -168,7 +182,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 showModalBottomSheet(
                   context: context,
                   builder:(context) {
-                    return const MenuExpandedWidget();
+                    return const MenuExpandedWidget(
+                      title: "Criar",
+                      submenu1: "Criar um Short",
+                      submenu2: "Enviar um vídeo",
+                      submenu3: "Transmitir ao vivo",
+                      icon1: Icon(Icons.play_circle),
+                      icon2: Icon(Icons.upload),
+                      icon3: Icon(Icons.phone_android)
+                    );
                   }
                 );
               }
