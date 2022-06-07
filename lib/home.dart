@@ -78,10 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: "Conectar a um dispositivo",
                     submenu1: "Vincular com código da TV",
                     submenu2: "Saiba mais",
-                    submenu3: "Status da conexão",
+                    submenu3: "",
                     icon1: Icon(Icons.tv),
                     icon2: Icon(Icons.info),
-                    icon3: Icon(Icons.connected_tv)
+                    icon3: Icon(null)
                   );
                 }
               );
