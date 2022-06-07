@@ -29,11 +29,13 @@ class MenuExpandedWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: Colors.white
+              Flexible(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               IconButton(
